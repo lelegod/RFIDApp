@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Insets;
 import android.graphics.Point;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
@@ -160,25 +162,18 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                 mInflater.inflate(R.menu.conditionmark_1, mMenu);
                 mAnimFlag = ANIM_1;
             }
-            long nowTime = System.currentTimeMillis();
-            long diff = nowTime - prevUpdateTime;
-            // 経過時間を表示
-            int size = mShowReadData.size();
-//            if (size < MAX_READ_COUNT) {
-//                if ((elapsedTime+diff) < MAX_READ_TIME_MS) {
-//                    // 経過時間
-//                    elapsedTime += diff;
-//                    mElapsedTimeView.setText(String.format("%s", elapsedTime/1000));
-//                } else {
-//                    // 経過時間
-//                    elapsedTime = MAX_READ_TIME_MS;
-//                    mElapsedTimeView.setText(String.format("9999"));
-//                }
-//            }
-            prevUpdateTime = nowTime;
             imageReplaceHandler();
         }
     };
+
+    /**
+     * 読取タグ表示時のビープ音を鳴らす
+     */
+    private void soundBeep() {
+        ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
+        toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP);
+        toneGenerator.release();
+    }
 
     /**
      * startReadTags用引数
@@ -207,6 +202,7 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                             mEpcCode = findViewById(R.id.epc_code);
                             mEpcCode.setText(key);
                             showProgress(TagDatabaseActivity.this);
+                            soundBeep();
                         }
                     });
                 } else {
@@ -314,22 +310,26 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
-                                                    Toast.makeText(getApplicationContext(), "Tag added successfully", Toast.LENGTH_LONG).show();
+                                                    showDialog(getString(R.string.title_input), getString(R.string.message_tagexist_success), getString(R.string.btn_txt_ok), null);
+//                                                    Toast.makeText(getApplicationContext(), "Tag added successfully", Toast.LENGTH_LONG).show();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(getApplicationContext(), "Error adding tag", Toast.LENGTH_LONG).show();
+                                                    showDialog(getString(R.string.title_error), getString(R.string.message_input_error), getString(R.string.btn_txt_ok), null);
+//                                                    Toast.makeText(getApplicationContext(), "Error adding tag", Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                 } else {
                                     // If a tag with the same EPC code already exists, notify the user
-                                    Toast.makeText(getApplicationContext(), "Tag with the same EPC code already exists", Toast.LENGTH_LONG).show();
+                                    showDialog(getString(R.string.title_error), getString(R.string.message_tagexist_error), getString(R.string.btn_txt_ok), null);
+//                                    Toast.makeText(getApplicationContext(), "Tag with the same EPC code already exists", Toast.LENGTH_LONG).show();
                                 }
                             } else {
                                 // Handle failure of the query
-                                Toast.makeText(getApplicationContext(), "Error checking tag", Toast.LENGTH_LONG).show();
+                                showDialog(getString(R.string.title_error), getString(R.string.message_check_error), getString(R.string.btn_txt_ok), null);
+//                                Toast.makeText(getApplicationContext(), "Error checking tag", Toast.LENGTH_LONG).show();
                             }
                         }
                     });

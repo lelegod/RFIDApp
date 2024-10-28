@@ -28,4 +28,6 @@ android {
 dependencies {
     implementation files('../libs/ExplorationRfid.jar')
     implementation files('../libs/TecRfidSuite.jar')
+    implementation 'androidx.test:monitor:1.7.2'
+    implementation 'androidx.test.ext:junit:1.2.1'
 }

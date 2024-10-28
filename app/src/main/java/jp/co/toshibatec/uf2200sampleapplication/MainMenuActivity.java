@@ -89,6 +89,7 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
     private ImageView mSearchAppBtn = null;
     /** Search App Button**/
     private ImageView mTagDatabaseBtn = null;
+    private ImageView mInventoryAppBtn = null;
 
     /** デバイス名用テキスト */
     private TextView mTvDevice = null;
@@ -458,9 +459,16 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
         } else {
             mTagDatabaseBtn = new ImageView(MainMenuActivity.this);
         }
+        Object omInventoryAppBtn = findViewById(R.id.inventory_app);
+        if (omInventoryAppBtn instanceof ImageView) {
+            mInventoryAppBtn = (ImageView) omInventoryAppBtn;
+        } else {
+            mInventoryAppBtn = new ImageView(MainMenuActivity.this);
+        }
         mDeviceConnectionBtn.setOnClickListener(this);
         mTagDatabaseBtn.setOnClickListener(this);
         mSearchAppBtn.setOnClickListener(this);
+        mInventoryAppBtn.setOnClickListener(this);
 
         String connectedAddress = readConnectedAddressFile();
         // 前回接続済み端末があれば
@@ -597,6 +605,10 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
         }
         else if (view.equals(mTagDatabaseBtn)) {
             Intent intent = new Intent(MainMenuActivity.this, TagDatabaseActivity.class);
+            startActivity(intent);
+        }
+        else if (view.equals(mInventoryAppBtn)) {
+            Intent intent = new Intent(MainMenuActivity.this, InventoryAppActivity.class);
             startActivity(intent);
         }
     }

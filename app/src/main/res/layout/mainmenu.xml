@@ -275,7 +275,7 @@
                     android:layout_alignBottom="@+id/parts_finder_app"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    />
+                    android:background="@drawable/shape_btn_menu_barcode" />
 
                 <ImageView
                     android:id="@+id/parts_finder_app"
