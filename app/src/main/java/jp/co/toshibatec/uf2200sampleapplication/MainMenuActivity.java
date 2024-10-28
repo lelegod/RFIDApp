@@ -72,7 +72,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-
 public class MainMenuActivity extends Activity implements View.OnClickListener {
     FirebaseFirestore firestore;
     /** インターフェイス */
