@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">探索ライブラリsampleApp</string>
+    <string name="title_search">探索画面</string>
+    <!-- ダイアログ文言 -->
+    <string name="btn_txt_ok">OK</string>
+    <string name="btn_txt_cancel">キャンセル</string>
+    <string name="btn_txt_set">セット</string>
+    <string name="hyphen">-</string>
+    <string name="title_error">エラー</string>
+    <string name="title_connect_error">通信エラー</string>
+    <string name="message_error_code">エラーコード : </string>
+    <string name="message_error_code_extended">拡張エラーコード : </string>
+    <string name="message_connect_error">デバイスの接続を確認してください</string>
+    <string name="message_connectstate_offline">ConnectStateOffline</string>
+    <string name="message_connectstate_none">ConnectStateNone</string>
+    <string name="message_reconnect_failed">再接続に失敗しました</string>
+    <string name="message_processfailed_open">指定したデバイスのオープンに失敗しました</string>
+    <string name="message_processfailed_claimDevice">デバイスの排他アクセス要求に失敗しました</string>
+    <string name="message_processfailed_setDevaiceEnabled">デバイスの動作要求にエラーが発生しました</string>
+    <string name="message_processfailed_close">デバイスのクローズに失敗しました</string>
+    <string name="message_processfailed_releaseDevice">デバイスの排他アクセス解除に失敗しました</string>
+    <string name="message_processfailed_getBluetoothList">Bluetooth機器リストの取得に失敗しました</string>
+    <string name="message_target_setting_error">探索対象は８個以上指定できません。</string>
+    <string name="message_target_not_set_error">探索対象を指定してください。</string>
+    <string name="search_description_text">探索対象のEPCを入力して下さい。</string>
+    <string name="search_list_description_text">探索対象リストを追加して下さい。</string>
+    <string name="permission_title">ストレージの権限</string>
+    <string name="permission_message">リーダ設定や読取タグ・バーコードのファイル保存、SDKログ出力の為に必要になります。</string>
+    <string name="permission_success">ストレージの権限を許可しました。</string>
+    <string name="permission_failed">ストレージ権限の許可を行いませんでした。</string>
+    <string name="permission_denied">ストレージの権限が許可されていません。\nOSの設定画面からストレージ権限を許可できます。</string>
+    <string name="permission_AccessLocation_title">位置情報の権限</string>
+    <string name="permission_AccessLocation_message">位置情報の権限は、BLE通信を行う際必要になります。</string>
+    <string name="permission_AccessLocation_success">位置情報の権限を許可しました。</string>
+    <string name="permission_AccessLocation_failed">位置情報の権限の許可を行いませんでした。</string>
+    <string name="permission_AccessLocation_denied">位置情報の権限が許可されていません。\nBLE通信ができません。\nOSの設定画面からUF-2200設定アプリの位置情報の権限を許可できます。</string>
+    <string name="permission_All_title">ストレージの権限／位置情報の権限</string>
+    <string name="permission_All_message">ストレージの権限は、リーダ設定や読取タグ・バーコードのファイル保存、SDKログ出力の為に必要になります。\n\n位置情報の権限は、BLE通信を行う際必要になります。</string>
+    <string name="permission_Bluetooth_title">Bluetooth権限(付近のデバイスの権限)</string>
+    <string name="permission_Bluetooth_message">RFIDリーダとの接続の為に必要になります。</string>
+    <string name="permission_Bluetooth_success">Bluetooth権限(付近のデバイスの権限)を許可しました。</string>
+    <string name="permission_Bluetooth_failed">Bluetooth権限(付近のデバイスの権限)の許可を行いませんでした</string>
+    <string name="permission_Bluetooth_denied">Bluetooth権限(付近のデバイスの権限)が許可されていません。\nRFIDリーダに接続できません。\nOSの設定画面より\"付近のデバイス\"を有効にしてください。</string>
+</resources>

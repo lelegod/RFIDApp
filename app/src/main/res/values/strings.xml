@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UF-2200サンプルアプリ</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- タイトルバー -->
+    <string name="title_menu">メニュー</string>
+    <string name="title_connectdevice">デバイス接続</string>
+    <string name="title_readtest">読取テスト</string>
+    <string name="title_setting">設定</string>
+    <string name="title_readbarcode">バーコード読取テスト</string>
+    <string name="title_frequencyselect">周波数選択</string>
+
+    <!-- メニュー画面 -->
+    <string name="menu_device">デバイス</string>
+    <string name="menu_fw_ver">FW Ver</string>
+    <string name="menu_remaining_buttery">バッテリー残量</string>
+
+    <!-- デバイス接続画面 -->
+    <string name="connectdevice_radiobutton_title">機種切替</string>
+    <string name="connectdevice_radiobutton_uf2200">UF-2200</string>
+    <string name="connectdevice_radiobutton_uf3000">UF-3000</string>
+    <string name="connectdevice_button_updatelist">リスト更新</string>
+
+    <!-- 読取テスト画面 -->
+    <string name="readtag_duplication">重複排除</string>
+    <string name="readtag_readcount">読取数</string>
+    <string name="readtag_elapsed_time">時間</string>
+    <string name="readtag_init_time">0</string>
+    <string name="readtag_seconds">s</string>
+
+    <!-- 設定画面 -->
+    <string name="setting_power">出力</string>
+    <string name="setting_qvalue">Q値</string>
+    <string name="setting_frequency">周波数</string>
+    <string name="setting_triggersw">トリガースイッチ</string>
+    <string name="setting_sleeptime">省電力ON/OFF</string>
+    <string name="setting_settingfile">設定ファイル</string>
+    <string name="setting_device">デバイス</string>
+    <string name="setting_tagreadmode">読取モード</string>
+    <string name="setting_flag_ab">フラグAB</string>
+    <string name="setting_misreading_prevention_settings">読取識別番号</string>
+
+    <string name="setting_filesave">保存ボタン</string>
+    <!-- ダイアログ文言 -->
+    <string name="btn_txt_ok">OK</string>
+    <string name="btn_txt_cancel">キャンセル</string>
+    <string name="btn_txt_set">セット</string>
+    <string name="title_error">エラー</string>
+    <string name="title_selectdevice">接続デバイス選択</string>
+    <string name="title_saveresult">結果を保存</string>
+    <string name="message_notag_error">タグがありません</string>
+    <string name="message_saveresult_error">結果の保存に失敗しました</string>
+    <string name="message_savefile">保存しました</string>
+    <string name="title_savesetting">設定ファイルを保存</string>
+    <string name="message_savesetting_override">上書きしますがよろしいですか?</string>
+    <string name="title_savedialog">新しいファイル名</string>
+    <string name="message_savesetting_error">設定ファイルの保存に失敗しました</string>
+    <string name="message_selectdevice_error">複数のデバイスが選択されています</string>
+    <string name="message_readtest_cancel">読取最大値に達したため、テストを読取テストを停止します</string>
+    <string name="message_connectstate_offline">ConnectStateOffline</string>
+    <string name="message_connectstate_none">ConnectStateNone</string>
+    <string name="message_processfailed_startReadTags">読取テストにエラーが発生しました</string>
+    <string name="message_processfailed_stopReadTags">読取テスト終了に失敗しました</string>
+    <string name="message_processfailed_setDataEventEnabled">継続リードの設定に失敗しました</string>
+    <string name="message_processfailed_getBluetoothList">Bluetooth機器リストの取得に失敗しました</string>
+    <string name="message_processfailed_startBluetoothDiscovery">Bluetooth機器リストの取得開始に失敗しました</string>
+    <string name="message_processfailed_stopBluetoothDiscovery">Bluetooth機器リストの取得停止に失敗しました</string>
+    <string name="message_processfailed_open">指定したデバイスのオープンに失敗しました</string>
+    <string name="message_processfailed_claimDevice">デバイスの排他アクセス要求に失敗しました</string>
+    <string name="message_processfailed_setDevaiceEnabled">デバイスの動作要求にエラーが発生しました</string>
+    <string name="message_processfailed_close">デバイスのクローズに失敗しました</string>
+    <string name="message_processfailed_releaseDevice">デバイスの排他アクセス解除に失敗しました</string>
+    <string name="readbarcode_readcount">読取数</string>
+    <string name="message_barcode_reading_error">バーコード読み取り中です\n読取停止ボタンを押して読取を停止してください。</string>
+    <string name="message_barcode_startRead_error">バーコードリード読取開始に失敗しました。</string>
+    <string name="message_barcode_stopRead_error">バーコードリード読取停止に失敗しました。</string>
+    <string name="permission_title">ストレージの権限</string>
+    <string name="permission_message">リーダ設定や読取タグ・バーコードのファイル保存、SDKログ出力の為に必要になります。</string>
+    <string name="permission_success">ストレージの権限を許可しました。</string>
+    <string name="permission_failed">ストレージ権限の許可を行いませんでした。</string>
+    <string name="permission_denied">ストレージの権限が許可されていません。\nリーダ設定や読取タグ・バーコードのファイル保存、SDKログ出力ができません。\nOSの設定画面からUF-2200サンプルアプリのストレージ権限を許可できます。</string>
+    <string name="message_processfailed_getBatteryLevel">バッテリー残量の取得に失敗しました</string>
+    <string name="message_processfailed_getFirmwareVer">ファームウェアバージョンの取得に失敗しました</string>
+    <string name="message_error_code">エラーコード : </string>
+    <string name="message_error_code_extended">拡張エラーコード : </string>
+    <string name="message_enableModelCheckProperty_error">機種判定に失敗しました</string>
+    <string name="message_processsuccess_setSettings">設定情報の送信に成功しました</string>
+    <string name="title_opensetting">設定ファイルを開く</string>
+    <string name="title_readsetting">設定読込</string>
+    <string name="title_sendsetting">設定送信</string>
+    <string name="message_processfailed_getPower">設定されている出力レベルの読込に失敗しました</string>
+    <string name="message_processfailed_getQValue">設定されているQ値の読込に失敗しました</string>
+    <string name="message_processfailed_getFrequency">設定されている周波数の読込に失敗しました</string>
+    <string name="message_processfailed_getTriggerSwMode">設定されているトリガースイッチモードの読込に失敗しました</string>
+    <string name="message_processfailed_getSavingEnergy">設定されている省電力情報の読込に失敗しました</string>
+    <string name="message_processfailed_setPower">出力レベルの送信に失敗しました</string>
+    <string name="message_processfailed_setQValue">Q値の送信に失敗しました</string>
+    <string name="message_processfailed_setFrequency">周波数の送信に失敗しました</string>
+    <string name="message_processfailed_setTriggerSwMode">トリガースイッチモードの送信に失敗しました</string>
+    <string name="message_processfailed_setSavingEnergy">省電力情報の送信に失敗しました</string>
+    <string name="message_processfailed_saveMemory">設定情報の記録に失敗しました</string>
+    <string name="message_processfailed_sendSettings">設定情報の送信に失敗しました</string>
+    <string name="message_processfailed_getSettings">設定情報の読込に失敗しました</string>
+    <string name="message_opensetting_error">設定ファイルが開けませんでした</string>
+    <string name="message_readsetting_error">設定の読込に失敗しました</string>
+    <string name="message_readsetting_out_of_range_error">設定の読み込みに失敗しました。\n範囲外の設定値</string>
+    <string name="message_setting_notexist_error">設定ファイルがありません</string>
+    <string name="permission_AccessLocation_title">位置情報の権限</string>
+    <string name="permission_AccessLocation_use">\"位置情報の使用\"が無効になっているため、\nBLE通信ができません。\nOSの設定より\"位置情報の使用\"を有効にしてください。</string>
+    <string name="permission_AccessLocation_message">位置情報の権限は、BLE通信を行う際必要になります。</string>
+    <string name="permission_AccessLocation_success">位置情報の権限を許可しました。</string>
+    <string name="permission_AccessLocation_failed">位置情報の権限の許可を行いませんでした。</string>
+    <string name="permission_AccessLocation_denied">位置情報の権限が許可されていません。\nBLE通信ができません。\nOSの設定画面からUF-2200設定アプリの位置情報の権限を許可できます。</string>
+    <string name="permission_All_title">ストレージの権限／位置情報の権限</string>
+    <string name="permission_All_message">ストレージの権限は、リーダ設定や読取タグ・バーコードのファイル保存、SDKログ出力の為に必要になります。\n\n位置情報の権限は、BLE通信を行う際必要になります。</string>
+    <string name="message_frequency_setting_save_title">設定を保存しました</string>
+    <string name="message_frequency_setting_save_success">設定を保存</string>
+    <string name="permission_Bluetooth_title">Bluetooth権限(付近のデバイスの権限)</string>
+    <string name="permission_Bluetooth_message">RFIDリーダとの接続の為に必要になります。</string>
+    <string name="permission_Bluetooth_success">Bluetooth権限(付近のデバイスの権限)を許可しました。</string>
+    <string name="permission_Bluetooth_failed">Bluetooth権限(付近のデバイスの権限)の許可を行いませんでした</string>
+    <string name="permission_Bluetooth_denied">Bluetooth権限(付近のデバイスの権限)が許可されていません。\nRFIDリーダに接続できません。\nOSの設定画面より\"付近のデバイス\"を有効にしてください。</string>
+
+    <!-- TagDatabase -->
+    <string name="epc_code">EPC コード</string>
+    <string name="product_code">プロダクトコード</string>
+
+</resources>
