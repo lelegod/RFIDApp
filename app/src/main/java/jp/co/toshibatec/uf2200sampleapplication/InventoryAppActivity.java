@@ -11,7 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +23,7 @@ import jp.co.toshibatec.callback.ErrorEventHandler;
 import jp.co.toshibatec.callback.ResultCallback;
 import jp.co.toshibatec.model.TagPack;
 import jp.co.toshibatec.uf2200sampleapplication.common.CustomAsyncTask;
+import jp.co.toshibatec.uf2200sampleapplication.common.ExcelReader;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -56,6 +59,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
 /**
  * ---------------------------------------------------------------<br>
  * Copyright (C) 2014<br>
@@ -74,7 +80,7 @@ import android.widget.TextView;
  * ---------------------------------------------------------------<br>
  */
 public class InventoryAppActivity extends Activity implements View.OnClickListener, NotifyForActivityInterface {
-
+    FirebaseFirestore firestore;
     /** 読取開始ボタン(読取停止ボタン) */
     private ImageView mReadStartBtn = null;
     /** クリアボタン */
@@ -127,6 +133,9 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
 
     /** 読取テスト中にバックキーが押下されたか */
     private boolean isReadBackPress = false;
+
+    private ExcelReader excelReader;
+    private Map<String, String> itemCodes = new HashMap<>(); // アイテムコードと品名を格納
 
     /** 表示更新用ハンドラー */
     private Handler mViewHandler = new Handler(Looper.getMainLooper());
@@ -237,6 +246,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
             for (Entry<String, TagPack> e : tagList.entrySet()) {
                 // 受信データからタグ情報を取得
                 String key = e.getKey();
+                // add conditional statement here
                 // 追加
                 mReadData.add(key);
             }
@@ -299,7 +309,22 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventoryapp);
+        firestore = FirebaseFirestore.getInstance();
+        excelReader = new ExcelReader(this);
+        Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_Item_data.xlsx");
 
+        // Sheet2からアイテムコードと品名を取得
+        List<List<String>> sheetData = data.get("Sheet2");
+        if (sheetData != null) {
+            for (List<String> row : sheetData) {
+                if (row.size() >= 2) {
+                    String itemCode = row.get(0);
+                    String itemName = row.get(1);
+                    itemCodes.put(itemCode, itemName); // アイテムコードをマップに追加
+                }
+            }
+        }
+        Log.d("excel", itemCodes.toString());
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             mStoragePath = getApplicationContext().getExternalFilesDir(null) + "";
         } else {
