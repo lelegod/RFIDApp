@@ -1,5 +1,4 @@
 package jp.co.toshibatec.uf2200sampleapplication.common;
-
 import android.content.Context;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.WorkbookFactory;

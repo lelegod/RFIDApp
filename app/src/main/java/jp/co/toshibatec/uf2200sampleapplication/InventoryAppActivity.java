@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.graphics.Insets;
 import android.graphics.Point;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.media.ToneGenerator;
 import android.os.AsyncTask;
@@ -305,31 +306,53 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
         }
     };
 
+    private static final String TAG = "MyApp"; // ログ用のタグ
+    private TextView itemTextView; // アイテムコードを表示するためのTextView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventoryapp);
-        firestore = FirebaseFirestore.getInstance();
-        excelReader = new ExcelReader(this);
-        Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_Item_data.xlsx");
+                excelReader = new ExcelReader(this);
 
-        // Sheet2からアイテムコードと品名を取得
-        List<List<String>> sheetData = data.get("Sheet2");
-        if (sheetData != null) {
-            for (List<String> row : sheetData) {
-                if (row.size() >= 2) {
-                    String itemCode = row.get(0);
-                    String itemName = row.get(1);
-                    itemCodes.put(itemCode, itemName); // アイテムコードをマップに追加
+                // Excelファイルからデータを読み込む
+                Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_Item_data.xlsx");
+
+                // Sheet2からアイテムコードと品名を取得
+                List<List<String>> sheetData = data.get("Sheet2");
+                if (sheetData != null) {
+                    for (List<String> row : sheetData) {
+                        if (row.size() >= 2) {
+                            String itemCode = row.get(0);
+                            String itemName = row.get(1);
+                            itemCodes.put(itemCode, itemName); // アイテムコードをマップに追加
+                        }
+                    }
                 }
-            }
-        }
-        Log.d("excel", itemCodes.toString());
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            mStoragePath = getApplicationContext().getExternalFilesDir(null) + "";
-        } else {
-            mStoragePath = Environment.getExternalStorageDirectory() + "";
-        }
+                Log.d(TAG, "コード番号のリスト取得完了: " + itemCodes.toString());
+
+
+
+        firestore = FirebaseFirestore.getInstance();
+//        excelReader = new ExcelReader(this);
+//        Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_Item_data.xlsx");
+//
+//        // Sheet2からアイテムコードと品名を取得
+//        List<List<String>> sheetData = data.get("Sheet2");
+//        if (sheetData != null) {
+//            for (List<String> row : sheetData) {
+//                if (row.size() >= 2) {
+//                    String itemCode = row.get(0);
+//                    String itemName = row.get(1);
+//                    itemCodes.put(itemCode, itemName); // アイテムコードをマップに追加
+//                }
+//            }
+//        }
+//        Log.d("excel", itemCodes.toString());
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+//            mStoragePath = getApplicationContext().getExternalFilesDir(null) + "";
+//        } else {
+//            mStoragePath = Environment.getExternalStorageDirectory() + "";
+//        }
 
         mReadStartBtn = (ImageView) findViewById(R.id.readstart);
         mReadStartBtn.setOnClickListener(this);
@@ -383,7 +406,27 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
         // リスナーを登録
         MainMenuActivity.setListener(this);
     }
+    private void startRFIDReader() {
+        // ここにRFID読み取り処理を実装します
+        // 例: RFIDリーダーからのデータを受信するためのリスナーを設定
+        // 読み取ったデータがアイテムコードと一致する場合に次の処理を行う
 
+        // ダミーのRFIDタグ読み取りイベント
+        String scannedTag = "A001000101"; // これは実際のRFIDリーダーからの入力に置き換えます
+        onRFIDTagScanned(scannedTag);
+    }
+
+    private void onRFIDTagScanned(String tag) {
+        // 読み取ったタグがアイテムコードと一致するか確認
+        if (itemCodes.containsKey(tag)) {
+            Log.d(TAG, "一致するコードが検出されました: " + tag);
+
+            // アイテムコードを表示
+            itemTextView.setText("アイテムコード: " + tag + "\n品名: " + itemCodes.get(tag));
+        } else {
+            Log.d(TAG, "一致するアイテムコードが見つかりません: " + tag);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         mInflater = getMenuInflater();
