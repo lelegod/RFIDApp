@@ -133,4 +133,9 @@
     <string name="title_input">Tag inputted</string>
     <string name="title_delete">Tag input deleted</string>
 
+    <!-- Partsfinderactivity -->
+    <string name="Final_product_code">完成品のコード</string>
+    <string name="Parts_code">必要な部品のコード</string>
+
+
 </resources>

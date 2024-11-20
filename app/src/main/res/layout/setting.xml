@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:id="@+id/relativeLayout1"
@@ -9,26 +10,26 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:background="#667994"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ScrollView
             android:id="@+id/ScrollView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/power_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -43,9 +44,9 @@
                         android:id="@+id/lv_power"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
@@ -56,10 +57,10 @@
                     android:id="@+id/qvalue_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -74,9 +75,9 @@
                         android:id="@+id/lv_qvalue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
@@ -87,10 +88,10 @@
                     android:id="@+id/frequency_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -105,9 +106,9 @@
                         android:id="@+id/lv_frequency"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
@@ -118,10 +119,10 @@
                     android:id="@+id/triggersw_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -136,9 +137,9 @@
                         android:id="@+id/lv_triggersw"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
@@ -149,10 +150,10 @@
                     android:id="@+id/sleeptime_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -168,9 +169,9 @@
                         android:id="@+id/lv_sleeptime"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
@@ -181,10 +182,10 @@
                     android:id="@+id/tagreadmode_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/lv_tagreadmodetitle"
@@ -200,14 +201,14 @@
                         android:id="@+id/lv_tagreadmode"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginEnd="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp" />
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -242,10 +243,10 @@
                     android:id="@+id/flag_ab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
@@ -260,30 +261,32 @@
                         android:id="@+id/lv_flag_ab"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginEnd="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_btn_setting_pulldown"
                         android:gravity="center_vertical"
                         android:paddingStart="10dp" />
                 </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1" >
-                <ImageView
-                    android:id="@+id/reset"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_btn_setting_reset" />
-            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/reset"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_btn_setting_reset" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -293,15 +296,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#637386"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_settingfile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="@string/setting_settingfile"
             android:textColor="#ffffff" />
@@ -311,9 +314,9 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/tv_settingfile"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="3"
             android:background="@drawable/shape_btn_setting_open" />
 
@@ -322,9 +325,9 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/open"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="3"
             android:background="@drawable/shape_btn_setting_save" />
 
@@ -339,8 +342,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/save"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="@string/setting_device"
             android:textColor="#ffffff" />
@@ -350,9 +353,9 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/tv_device"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="3"
             android:background="@drawable/shape_btn_setting_get_setting" />
 
@@ -360,11 +363,11 @@
             android:id="@+id/sendsettings"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_alignParentBottom="true"
             android:layout_below="@+id/getsettings"
-            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="3"
             android:background="@drawable/shape_btn_setting_send_setting" />
     </LinearLayout>

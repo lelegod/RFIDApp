@@ -28,11 +28,45 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
 
-                    <ListView
-                        android:id="@+id/lv_readtag"
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </ListView>
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/Final_product_code"
+                        android:textColor="#ffffff" />
+
+                    <EditText
+                        android:id="@+id/final_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:inputType="textMultiLine"
+                        android:maxLength="24"
+                        android:padding="5dp"
+                        android:text="303515a52404230081400001"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/Parts_code"
+                        android:textColor="#ffffff" />
+
+                    <EditText
+                        android:id="@+id/parts_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:inputType="textMultiLine"
+                        android:maxLength="24"
+                        android:padding="5dp"
+                        android:text="parts a"
+                        android:visibility="visible" />
+
+
+
+
                 </LinearLayout>
             </ScrollView>
 
@@ -63,54 +97,17 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1" >
 
-                <CheckBox
-                    android:id="@+id/duplication_checkbox"
-                    style="@style/CustomCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/readtag_duplication"
-                    android:textColor="#ffffff" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="40dp"
-                    android:text="@string/readtag_elapsed_time"
-                    android:textColor="#ffffff" />
 
-                <TextView
-                    android:id="@+id/elapsedTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="25dp"
-                    android:text="@string/readtag_init_time"
-                    android:textColor="#ffffff" />
 
-                <TextView
-                    android:id="@+id/seconds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/readtag_seconds"
-                    android:textColor="#ffffff" />
+
+
+
+
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/line"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/duplication_layout"
-                android:src="@drawable/and_line2" />
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -118,24 +115,6 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="2.5"
-                    android:gravity="center_vertical"
-                    android:text="@string/readtag_readcount"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:id="@+id/readcount"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="right|center_vertical"
-                    android:paddingRight="10dp"
-                    android:text="0"
-                    android:textColor="#ffffff" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -160,7 +139,7 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/" />
+                android:background="@drawable/and_btn_save2_u_e" />
 
             <ImageView
                 android:id="@+id/clear"
