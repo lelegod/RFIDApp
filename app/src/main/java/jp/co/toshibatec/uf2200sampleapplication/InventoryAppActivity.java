@@ -59,8 +59,16 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * ---------------------------------------------------------------<br>
@@ -248,7 +256,29 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                 String key = e.getKey();
                 // add conditional statement here
                 // 追加
-                mReadData.add(key);
+                firestore.collection("tag_list")
+                        .whereEqualTo("epc_code", key)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                CollectionReference tag_list = firestore.collection("tag_list");
+                                if (task.isSuccessful()) {
+                                    if (task.getResult().isEmpty()) {
+                                        Log.d("none","none");
+                                    } else {
+                                        DocumentSnapshot document = task.getResult().getDocuments().get(0);
+                                        String productCode = document.getString("product_code");
+                                        if (productCodes.contains(productCode)){
+                                            mReadData.add(productCode);;
+                                        }
+                                    }
+                                } else {
+                                    Log.d("none","error checking tag");
+                                }
+                            }
+                        });
+//                mReadData.add(key);
             }
             // 読取タグリストを表示更新
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
@@ -280,7 +310,6 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
             }
         }
     };
-
     /**
      * stopReadTags用引数
      */
@@ -304,27 +333,31 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
             }
         }
     };
-
+    private ArrayList<String> productCodes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventoryapp);
         firestore = FirebaseFirestore.getInstance();
         excelReader = new ExcelReader(this);
-        Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_Item_data.xlsx");
+        Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_file.xlsx");
 
         // Sheet2からアイテムコードと品名を取得
-        List<List<String>> sheetData = data.get("Sheet2");
+        List<List<String>> sheetData = data.get("２．棚卸アプリ");
         if (sheetData != null) {
             for (List<String> row : sheetData) {
-                if (row.size() >= 2) {
-                    String itemCode = row.get(0);
-                    String itemName = row.get(1);
-                    itemCodes.put(itemCode, itemName); // アイテムコードをマップに追加
+                if (row.size() >= 5) {
+                    if (row.get(4).equals("1.0")) {
+                        String itemCode = row.get(0);
+                        String itemName = row.get(1);
+                        itemCodes.put(itemCode, itemName); // アイテムコードをマップに追加
+                    }
                 }
             }
         }
-        Log.d("excel", itemCodes.toString());
+//        Log.d("excel", itemCodes.toString());
+        productCodes = new ArrayList<String>(itemCodes.keySet());
+//        Log.d("excel", productCodes.toString());
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             mStoragePath = getApplicationContext().getExternalFilesDir(null) + "";
         } else {
