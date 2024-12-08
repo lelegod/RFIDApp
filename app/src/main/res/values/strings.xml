@@ -126,6 +126,7 @@
     <!-- TagDatabase -->
     <string name="epc_code">EPC コード</string>
     <string name="product_code">プロダクトコード</string>
+    <string name="product_name">品名</string>
     <string name="message_tagexist_error">Tag existed</string>
     <string name="message_tagexist_success">Tag input success</string>
     <string name="message_input_error">Error inputting tag</string>

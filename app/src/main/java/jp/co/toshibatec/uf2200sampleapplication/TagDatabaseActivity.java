@@ -71,6 +71,8 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
 
     private EditText mProductCode = null;
 
+    private EditText mProductName = null;
+
     private boolean mIsStartReadTags = false;
 //    /** 経過時間表示 */
 //    private TextView mElapsedTimeView = null;
@@ -292,6 +294,8 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
             final String epcCode = mEpcCode.getText().toString();
             mProductCode = findViewById(R.id.product_code);
             final String productCode = mProductCode.getText().toString();
+            mProductName = findViewById(R.id.product_name);
+            final String productName = mProductName.getText().toString();
 
             firestore.collection("tag_list")
                     .whereEqualTo("epc_code", epcCode)
@@ -305,6 +309,7 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                                     Map<String, Object> tag = new HashMap<>();
                                     tag.put("epc_code", epcCode);
                                     tag.put("product_code", productCode);
+                                    tag.put("product_name", productName);
 
                                     firestore.collection("tag_list").add(tag)
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
