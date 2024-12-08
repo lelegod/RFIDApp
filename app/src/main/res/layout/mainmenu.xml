@@ -285,7 +285,7 @@
                     android:layout_weight="1"
                     android:layout_alignLeft="@+id/menu_deviceconnection"
                     android:layout_alignTop="@+id/menu_setting"
-                    />
+                    android:background="@drawable/shape_btn_menu_barcode" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

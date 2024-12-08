@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#455362">
+
+    <!-- Search Box -->
+    <EditText
+        android:id="@+id/searchBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search products..."
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC"
+        android:background="#546E7A"
+        android:layout_margin="8dp"
+        android:inputType="text" />
+
+    <!-- Scrollable Grid Layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
+
+        <GridLayout
+            android:id="@+id/parentGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:padding="16dp"
+            android:layout_margin="8dp">
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>
