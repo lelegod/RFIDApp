@@ -1,7 +1,5 @@
 package jp.co.toshibatec.uf2200sampleapplication;
 
-import jp.co.toshibatec.uf2200sampleapplication.common.ExcelReader;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +9,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,15 +20,13 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
-public class PartsFinderActivity extends Activity {
-    private ExcelReader excelReader;
+import jp.co.toshibatec.uf2200sampleapplication.common.ExcelReader;
 
-    Map<String, ArrayList<String>> parentChildrenMap = new HashMap<>();
+public class PartsFinderChildActivity extends Activity {
+    private static PartsFinderChildActivity mPartsFinderChildActivity = null;
 
-    private static PartsFinderActivity mPartsFinderActivity = null;
-
-    public static PartsFinderActivity getInstance() {
-        return mPartsFinderActivity;
+    public static PartsFinderChildActivity getInstance() {
+        return mPartsFinderChildActivity;
     }
 
     /**
@@ -58,51 +53,31 @@ public class PartsFinderActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.partsfinder);
+        setContentView(R.layout.partsfinder_child);
+        mPartsFinderChildActivity = this;
 
-        excelReader = new ExcelReader(this);
-        Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_file.xlsx");
+        ArrayList<String> childProducts = getIntent().getStringArrayListExtra("childElements");
 
-        // Sheet2からアイテムコードと品名を取得
-        List<List<String>> sheetData = data.get("３．製品構成アプリ");
-        if (sheetData != null) {
-            for (List<String> row : sheetData) {
-                if (row.size() >= 4) {
-                    String parentName = row.get(1);
-                    String childName = row.get(3);
-                    if (!parentChildrenMap.containsKey(parentName)) {
-                        parentChildrenMap.put(parentName, new ArrayList<>());
-                    }
-                    parentChildrenMap.get(parentName).add(childName);
-                }
-            }
-            parentChildrenMap.remove("品名（親）");
-        }
-        Log.d("parentChildrenMap", parentChildrenMap.toString());
-
-        mPartsFinderActivity = this;
-        GridLayout parentGridLayout = findViewById(R.id.parentGrid);
-        for (String parentProduct : parentChildrenMap.keySet()) {
+        GridLayout childGridLayout = findViewById(R.id.childGrid);
+        assert childProducts != null;
+        for (String child : childProducts) {
             Button button = new Button(this);
-            button.setText(parentProduct);
+            button.setText(child);
             button.setBackgroundColor(Color.parseColor("#23a9a9"));
             button.setTextColor(Color.WHITE);
-            // Set layout parameters for 2-column layout
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = 0; // Use weight for equal width
+            params.width = 0;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
             params.setMargins(8, 8, 8, 8);
             button.setLayoutParams(params);
 
+            // Set onClickListener for each child button
             button.setOnClickListener(view -> {
-//                Toast.makeText(this, "Selected: " + parentProduct, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, PartsFinderChildActivity.class);
-                intent.putStringArrayListExtra("childElements", parentChildrenMap.get(parentProduct));
-                startActivity(intent);
+//                Toast.makeText(this, "Selected Child: " + child, Toast.LENGTH_SHORT).show();
             });
 
-            parentGridLayout.addView(button);
+            childGridLayout.addView(button);
         }
     }
 
@@ -133,7 +108,7 @@ public class PartsFinderActivity extends Activity {
             mShowDialogRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    mDialog = new AlertDialog.Builder(PartsFinderActivity.this);
+                    mDialog = new AlertDialog.Builder(PartsFinderChildActivity.this);
                     mDialog.setTitle(title);
                     mDialog.setMessage(message);
                     mDialog.setPositiveButton(btn1Txt, new DialogInterface.OnClickListener() {
@@ -175,7 +150,7 @@ public class PartsFinderActivity extends Activity {
             mShowDialogRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    mDialog = new AlertDialog.Builder(PartsFinderActivity.this);
+                    mDialog = new AlertDialog.Builder(PartsFinderChildActivity.this);
                     mDialog.setTitle(title);
                     mDialog.setMessage(message);
                     mDialog.setPositiveButton(btn1Txt, new DialogInterface.OnClickListener() {
@@ -207,3 +182,4 @@ public class PartsFinderActivity extends Activity {
         }
     }
 }
+

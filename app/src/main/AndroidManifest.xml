@@ -102,6 +102,13 @@
             android:label="@string/title_frequencyselect"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".PartsFinderChildActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:label="@string/title_frequencyselect"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
