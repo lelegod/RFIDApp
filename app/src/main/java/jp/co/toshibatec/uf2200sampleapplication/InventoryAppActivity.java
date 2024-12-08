@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.graphics.Insets;
 import android.graphics.Point;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.media.ToneGenerator;
 import android.os.AsyncTask;
@@ -422,6 +423,26 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
         mInflater = getMenuInflater();
         mMenu = menu;
         return super.onCreateOptionsMenu(mMenu);
+    }
+
+    private void soundAlarm(int soundResId, int repeatCount) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, soundResId);
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            private int playCount = 0;
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                playCount++;
+                if (playCount < repeatCount) {
+                    mp.start();
+                } else {
+                    mp.release();
+                }
+            }
+        });
+
+        mediaPlayer.start();
     }
 
     @Override
@@ -894,15 +915,6 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
     }
 
     /**
-     * 読取タグ表示時のビープ音を鳴らす
-     */
-    private void soundBeep() {
-        ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
-        toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP);
-        toneGenerator.release();
-    }
-
-    /**
      * 読取タグデータアダプタークラス
      */
     private class ShowReadAdapter extends ArrayAdapter<String> {
@@ -1017,7 +1029,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                             publishProgress(a.toArray(new String[a.size()]));
                             a.clear();
                             // ビープ音鳴音
-                            soundBeep();
+                            soundAlarm(R.raw.rssisound2, 1);
                         }
                     }
                 }
@@ -1032,7 +1044,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                         publishProgress(a.toArray(new String[a.size()]));
                         a.clear();
                         // ビープ音鳴音
-                        soundBeep();
+                        soundAlarm(R.raw.rssisound2, 1);
                     }
                 }
             }
@@ -1042,7 +1054,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                 publishProgress(a.toArray(new String[a.size()]));
                 a.clear();
                 // ビープ音鳴音
-                soundBeep();
+                soundAlarm(R.raw.rssisound2, 1);
             }
 
             // 読取分のが表示更新が済んだので、クリア
@@ -1122,7 +1134,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                             publishProgress(a.toArray(new String[a.size()]));
                             a.clear();
                             // ビープ音鳴音
-                            soundBeep();
+                            soundAlarm(R.raw.rssisound2, 1);
                         }
                     }
                 }
@@ -1137,7 +1149,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                         publishProgress(a.toArray(new String[a.size()]));
                         a.clear();
                         // ビープ音鳴音
-                        soundBeep();
+                        soundAlarm(R.raw.rssisound2, 1);
                     }
                 }
             }
@@ -1147,7 +1159,7 @@ public class InventoryAppActivity extends Activity implements View.OnClickListen
                 publishProgress(a.toArray(new String[a.size()]));
                 a.clear();
                 // ビープ音鳴音
-                soundBeep();
+                soundAlarm(R.raw.rssisound2, 1);
             }
 
             // 読取分のが表示更新が済んだので、クリア
