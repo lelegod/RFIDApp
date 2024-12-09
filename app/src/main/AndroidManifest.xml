@@ -85,7 +85,7 @@
             android:name=".TagDatabaseActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:label="@string/title_frequencyselect"
+            android:label="@string/title_tagdatabase"
             android:screenOrientation="landscape" >
         </activity>
         <activity

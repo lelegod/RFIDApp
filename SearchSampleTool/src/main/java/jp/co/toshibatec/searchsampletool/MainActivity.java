@@ -358,18 +358,14 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            // When the "Up" button is clicked
-            case android.R.id.home:
-                // Navigate to MainMenuActivity
-                Intent intent = new Intent();
-                intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.MainMenuActivity");
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent();
+            intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.MainMenuActivity");
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -124,6 +124,7 @@
     <string name="permission_Bluetooth_denied">Bluetooth権限(付近のデバイスの権限)が許可されていません。\nRFIDリーダに接続できません。\nOSの設定画面より\"付近のデバイス\"を有効にしてください。</string>
 
     <!-- TagDatabase -->
+    <string name="title_tagdatabase">タグ設定</string>
     <string name="epc_code">EPC コード</string>
     <string name="product_code">プロダクトコード</string>
     <string name="product_name">品名</string>

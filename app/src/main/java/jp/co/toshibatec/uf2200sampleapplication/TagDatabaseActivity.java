@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Insets;
 import android.graphics.Point;
 import android.media.AudioManager;
@@ -22,6 +23,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -269,7 +271,9 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
         setContentView(R.layout.tagdatabase);
 
         mTagDatabaseActivity = this;
-
+        if(getActionBar()!=null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         mSaveBtn = (ImageView) findViewById(R.id.save);
         mSaveBtn.setOnClickListener(this);
         mScanBtn = (ImageView) findViewById(R.id.scan);
@@ -283,6 +287,16 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
         mInflater = getMenuInflater();
         mMenu = menu;
         return super.onCreateOptionsMenu(mMenu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onClick(View view) {
