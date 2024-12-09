@@ -38,6 +38,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
@@ -165,41 +166,15 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
     private EditText mProductCode = null;
 
     private String mConnectionRequestString = null;
-    private BluetoothConnectionService bluetoothService;
-    private boolean isBound = false;
 
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            BluetoothConnectionService.LocalBinder binder = (BluetoothConnectionService.LocalBinder) service;
-            bluetoothService = binder.getService();
-            isBound = true;
-
-            if (!bluetoothService.isConnected()) {
-                bluetoothService.connectDevice(mConnectionRequestString);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            isBound = false;
-        }
-    };
 
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this, BluetoothConnectionService.class);
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
     @Override
     protected void onStop() {
         super.onStop();
-        // Unbind from the service to avoid memory leaks
-        if (isBound) {
-            unbindService(serviceConnection);
-            isBound = false;
-        }
     }
 
     @Override
@@ -219,8 +194,6 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
         }
         this.getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, BluetoothConnectionService.class);
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         // ログサイズ設定
         Log.setMaxFileSize(mSDKLogSize);
         Log.setLogOutPut(WRITE_TO_CONSOLE_AND_SD);
@@ -382,6 +355,21 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
             }
         }
         Log.info(END);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // When the "Up" button is clicked
+            case android.R.id.home:
+                // Navigate to MainMenuActivity
+                Intent intent = new Intent();
+                intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.MainMenuActivity");
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -709,14 +697,10 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
     protected void onDestroy() {
         Log.info(START);
         // デバイス切断
-        deviceDisConnect();
+//        deviceDisConnect();
         mConnectionEventCallback = null;
         Log.info(END);
         super.onDestroy();
-        if (isBound) {
-            unbindService(serviceConnection);
-            isBound = false;
-        }
 
     }
 

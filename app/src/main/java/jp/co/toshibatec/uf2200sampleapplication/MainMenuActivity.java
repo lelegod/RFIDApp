@@ -235,27 +235,6 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
     public int getSDKLogSize(){
         return mSDKLogSize;
     }
-
-    private BluetoothConnectionService bluetoothService;
-    private boolean isBound = false;
-
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            BluetoothConnectionService.LocalBinder binder = (BluetoothConnectionService.LocalBinder) service;
-            bluetoothService = binder.getService();
-            isBound = true;
-
-            if (!bluetoothService.isConnected()) {
-                bluetoothService.connectDevice(mConnectionRequestString);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            isBound = false;
-        }
-    };
     @Override
     protected void onStart() {
         super.onStart();
@@ -263,11 +242,6 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        // Unbind from the service to avoid memory leaks
-        if (isBound) {
-            unbindService(serviceConnection);
-            isBound = false;
-        }
     }
 
     /**
@@ -384,13 +358,12 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainmenu);
-        Intent intent = new Intent(this, BluetoothConnectionService.class);
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        Intent serviceIntent = new Intent(this, BluetoothConnectionService.class);
+        startForegroundService(serviceIntent);
         mMainMenuActivity = this;
 
         // タイトルバー表記を"メニュー"へ変更
         setTitle(R.string.title_menu);
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             mStoragePath = getApplicationContext().getExternalFilesDir(null) + "";
         } else {
@@ -642,10 +615,6 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
         mDissmissProgressHandler = null;
         mDissmissProgressRunnable = null;
         super.onDestroy();
-        if (isBound) {
-            unbindService(serviceConnection);
-            isBound = false;
-        }
     }
 
     /**
