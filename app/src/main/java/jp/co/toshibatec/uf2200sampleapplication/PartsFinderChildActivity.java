@@ -46,6 +46,8 @@ public class PartsFinderChildActivity extends Activity {
     /** 探索対象(EPC) */
     private String searchTarget = null;
     private static PartsFinderChildActivity mPartsFinderChildActivity = null;
+    /** 接続要求MACアドレス */
+    private String mConnectionRequestString = null;
 
     public static PartsFinderChildActivity getInstance() {
         return mPartsFinderChildActivity;
@@ -76,6 +78,10 @@ public class PartsFinderChildActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partsfinder_child);
+        if (getIntent().hasExtra("EXTRA_CONNECTION_REQUEST")) {
+            mConnectionRequestString = getIntent().getStringExtra("EXTRA_CONNECTION_REQUEST");
+        }
+
         mPartsFinderChildActivity = this;
         firestore = FirebaseFirestore.getInstance();
 
@@ -98,8 +104,9 @@ public class PartsFinderChildActivity extends Activity {
             // Set onClickListener for each child button
             button.setOnClickListener(view -> {
 //                Toast.makeText(this, "Selected Child: " + child, Toast.LENGTH_SHORT).show();
+                Log.d("parentChildrenMap", childProduct.toString());
                 firestore.collection("tag_list")
-                        .whereEqualTo("product_code", childProduct)
+                        .whereEqualTo("product_name", childProduct)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -107,10 +114,21 @@ public class PartsFinderChildActivity extends Activity {
                                 CollectionReference tag_list = firestore.collection("tag_list");
                                 if (task.isSuccessful()) {
                                     if (task.getResult().isEmpty()) {
-
+                                        showDialog(getString(R.string.title_error), getString(R.string.message_check_error), getString(R.string.btn_txt_ok), null);
                                     } else {
                                         DocumentSnapshot document = task.getResult().getDocuments().get(0);
                                         searchTarget = document.getString("epc_code");
+                                        Log.d("parentChildrenMap", searchTarget.toString());
+                                        Intent intent = new Intent(view.getContext(), jp.co.toshibatec.searchsampletool.MainActivity.class);
+                                        if (intent.resolveActivity(getPackageManager()) != null) {
+                                            intent.putExtra("EXTRA_CONNECTION_REQUEST", mConnectionRequestString);
+                                            intent.putExtra(KEY_TARGET, searchTarget);
+                                            Log.d("parentChildrenMap", searchTarget.toString());
+                                            intent.putExtra(KEY_SELECTED_EPC, isSelectedEPC);
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(view.getContext(), "Activity not found", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 } else {
                                     // Handle failure of the query
@@ -118,12 +136,7 @@ public class PartsFinderChildActivity extends Activity {
                                 }
                             }
                         });
-                Intent intent = new Intent(this, PartsFinderChildActivity.class);
-                intent.putExtra(KEY_TARGET, searchTarget);
-                intent.putExtra(KEY_SELECTED_EPC, isSelectedEPC);
-                startActivity(intent);
             });
-
             childGridLayout.addView(button);
         }
     }

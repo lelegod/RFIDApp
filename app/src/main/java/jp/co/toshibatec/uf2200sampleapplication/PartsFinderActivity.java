@@ -33,7 +33,8 @@ public class PartsFinderActivity extends Activity {
     public static PartsFinderActivity getInstance() {
         return mPartsFinderActivity;
     }
-
+    /** 接続要求MACアドレス */
+    private String mConnectionRequestString = null;
     /**
      * ダイアログ
      */
@@ -59,6 +60,9 @@ public class PartsFinderActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partsfinder);
+        if (getIntent().hasExtra("EXTRA_CONNECTION_REQUEST")) {
+            String mConnectionRequestString = getIntent().getStringExtra("EXTRA_CONNECTION_REQUEST");
+        }
 
         excelReader = new ExcelReader(this);
         Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_file.xlsx");
@@ -98,6 +102,7 @@ public class PartsFinderActivity extends Activity {
             button.setOnClickListener(view -> {
 //                Toast.makeText(this, "Selected: " + parentProduct, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, PartsFinderChildActivity.class);
+                intent.putExtra("EXTRA_CONNECTION_REQUEST", mConnectionRequestString);
                 intent.putStringArrayListExtra("childElements", parentChildrenMap.get(parentProduct));
                 startActivity(intent);
             });

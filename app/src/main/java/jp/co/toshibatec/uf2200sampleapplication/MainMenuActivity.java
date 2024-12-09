@@ -620,6 +620,7 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
         }
         else if (view.equals(mPartsFinderBtn)) {
             Intent intent = new Intent(MainMenuActivity.this, PartsFinderActivity.class);
+            intent.putExtra("EXTRA_CONNECTION_REQUEST", mConnectionRequestString);
             startActivity(intent);
         }
     }

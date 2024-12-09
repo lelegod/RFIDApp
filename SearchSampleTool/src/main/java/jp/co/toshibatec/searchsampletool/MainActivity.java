@@ -210,6 +210,10 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
         if(getActionBar()!=null) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        if (getIntent().hasExtra(KEY_TARGET)) {
+            searchTarget = getIntent().getStringExtra(KEY_TARGET);
+            android.util.Log.d("parentChildrenMap", searchTarget.toString());
+        }
         if (getIntent().hasExtra("EXTRA_CONNECTION_REQUEST")) {
             mConnectionRequestString = getIntent().getStringExtra("EXTRA_CONNECTION_REQUEST");
         }
@@ -275,6 +279,9 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
             mSearchEditText = (EditText) omSearchEditText;
         } else {
             mSearchEditText = new EditText(MainActivity.this);
+        }
+        if (searchTarget != null) {
+            mSearchEditText.setText(searchTarget);
         }
         // 探索除外対象EPC設定
         Object omExclusionEditText = findViewById(R.id.exclusion_text);
