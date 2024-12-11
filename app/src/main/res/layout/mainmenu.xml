@@ -255,7 +255,7 @@
                     android:layout_alignTop="@+id/menu_barcode"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_btn_menu_barcode" />
+                    android:background="@drawable/shape_btn_menu_searchapp" />
             </LinearLayout>
 
             <LinearLayout
