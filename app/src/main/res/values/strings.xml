@@ -16,6 +16,12 @@
     <string name="menu_device">デバイス</string>
     <string name="menu_fw_ver">FW Ver</string>
     <string name="menu_remaining_buttery">バッテリー残量</string>
+    <string name="title_login">ログイン</string>
+    <string name="cancel_login">キャンセル </string>
+    <string name="error_login">エラー </string>全て入力してください
+    <string name="missing_login">全て入力してください</string>
+    <string name="invalid_login">ユーザー名かパスワードが違います</string>
+
 
     <!-- デバイス接続画面 -->
     <string name="connectdevice_radiobutton_title">機種切替</string>
@@ -141,4 +147,7 @@
     <!-- Parts Finder App -->
     <string name="title_partsfinder_parent">品名(親)</string>
     <string name="title_partsfinder_child">品名(子)</string>
+
+    <!-- Parts Finder App -->
+    <string name="firebase_error">データベース接続エラー</string>
 </resources>

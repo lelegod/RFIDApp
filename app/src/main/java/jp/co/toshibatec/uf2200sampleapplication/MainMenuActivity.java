@@ -46,6 +46,7 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -358,6 +359,7 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainmenu);
+        firestore = FirebaseFirestore.getInstance();
         Intent serviceIntent = new Intent(this, BluetoothConnectionService.class);
         startForegroundService(serviceIntent);
         mMainMenuActivity = this;
@@ -584,8 +586,9 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             }
         }
         else if (view.equals(mTagDatabaseBtn)) {
-            Intent intent = new Intent(MainMenuActivity.this, TagDatabaseActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainMenuActivity.this, TagDatabaseActivity.class);
+//            startActivity(intent);
+            showLoginDialog();
         }
         else if (view.equals(mInventoryAppBtn)) {
             Intent intent = new Intent(MainMenuActivity.this, InventoryAppActivity.class);
@@ -1423,6 +1426,65 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             };
             mShowDialogHandler.post(mShowDialogRunnable);
         }
+    }
+    private void showLoginDialog() {
+        if (null != mShowDialogHandler) {
+            mShowDialogRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    View loginView = getLayoutInflater().inflate(R.layout.login, null);
+
+                    EditText usernameInput = loginView.findViewById(R.id.username_input);
+                    EditText passwordInput = loginView.findViewById(R.id.password_input);
+
+                    mDialog = new AlertDialog.Builder(MainMenuActivity.this);
+                    mDialog.setTitle(getString(R.string.title_login));
+                    mDialog.setView(loginView);
+
+                    mDialog.setPositiveButton(getString(R.string.title_login), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String username = usernameInput.getText().toString().trim();
+                            String password = passwordInput.getText().toString().trim();
+
+                            if (username.isEmpty() || password.isEmpty()) {
+                                showDialog(getString(R.string.error_login), getString(R.string.missing_login), getString(R.string.btn_txt_ok), null);
+                            } else {
+                                validateLogin(username, password);
+                            }
+                        }
+                    });
+
+                    mDialog.setNegativeButton(getString(R.string.cancel_login), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    mDialog.show();
+                }
+            };
+            mShowDialogHandler.post(mShowDialogRunnable);
+        }
+    }
+
+    private void validateLogin(String username, String password) {
+        firestore.collection("admin")
+                .whereEqualTo("username", username)
+                .whereEqualTo("password", password)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        Intent intent = new Intent(MainMenuActivity.this, TagDatabaseActivity.class);
+                        startActivity(intent);
+                    } else {
+                        showDialog(getString(R.string.error_login), getString(R.string.invalid_login), getString(R.string.btn_txt_ok), null);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    showDialog(getString(R.string.error_login), getString(R.string.firebase_error), getString(R.string.btn_txt_ok), null);
+                });
     }
 
     /** ストレージ書き込みパーミッション用リクエストコード */
