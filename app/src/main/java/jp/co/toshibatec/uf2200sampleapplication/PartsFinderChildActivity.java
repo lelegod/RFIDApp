@@ -73,6 +73,7 @@ public class PartsFinderChildActivity extends Activity {
      */
     private boolean isReadBackPress = false;
 
+    private String source = "child";
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,7 @@ public class PartsFinderChildActivity extends Activity {
                                         Intent intent = new Intent(view.getContext(), jp.co.toshibatec.searchsampletool.MainActivity.class);
                                         if (intent.resolveActivity(getPackageManager()) != null) {
                                             intent.putExtra("EXTRA_CONNECTION_REQUEST", mConnectionRequestString);
+                                            intent.putExtra("SOURCE", source);
                                             intent.putExtra(KEY_TARGET, searchTarget);
                                             Log.d("parentChildrenMap", searchTarget.toString());
                                             intent.putExtra(KEY_SELECTED_EPC, isSelectedEPC);

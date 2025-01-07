@@ -275,7 +275,7 @@
                     android:layout_alignBottom="@+id/parts_finder_app"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_btn_menu_barcode" />
+                    android:background="@drawable/shape_btn_menu_inventoryapp" />
 
                 <ImageView
                     android:id="@+id/parts_finder_app"
@@ -285,7 +285,7 @@
                     android:layout_weight="1"
                     android:layout_alignLeft="@+id/menu_deviceconnection"
                     android:layout_alignTop="@+id/menu_setting"
-                    android:background="@drawable/shape_btn_menu_barcode" />
+                    android:background="@drawable/shape_btn_menu_partsfinder" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

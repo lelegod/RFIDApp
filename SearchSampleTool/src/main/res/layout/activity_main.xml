@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:contentDescription="追加"
-                        android:text="追加" />
+                        android:text="Check" />
                 </LinearLayout>
             </LinearLayout>
 

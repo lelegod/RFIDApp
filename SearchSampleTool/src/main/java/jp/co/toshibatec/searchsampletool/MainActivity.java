@@ -166,6 +166,7 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
     private EditText mProductCode = null;
 
     private String mConnectionRequestString = null;
+    private String source = null;
 
 
     @Override
@@ -191,6 +192,9 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
         }
         if (getIntent().hasExtra("EXTRA_CONNECTION_REQUEST")) {
             mConnectionRequestString = getIntent().getStringExtra("EXTRA_CONNECTION_REQUEST");
+        }
+        if (getIntent().hasExtra("SOURCE")) {
+            source = getIntent().getStringExtra("SOURCE");
         }
         this.getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main);
@@ -360,7 +364,12 @@ public class MainActivity extends LibAccessBaseActivity implements View.OnClickL
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Intent intent = new Intent();
-            intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.MainMenuActivity");
+            if (source != null && source.equals("child")) {
+                intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.PartsFinderChildActivity");
+            }
+            else {
+                intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.MainMenuActivity");
+            }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             return true;
