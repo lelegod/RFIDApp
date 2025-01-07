@@ -18,10 +18,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 public class PartsFinderActivity extends Activity {
     private ExcelReader excelReader;
@@ -63,7 +66,9 @@ public class PartsFinderActivity extends Activity {
         if (getIntent().hasExtra("EXTRA_CONNECTION_REQUEST")) {
             String mConnectionRequestString = getIntent().getStringExtra("EXTRA_CONNECTION_REQUEST");
         }
-
+        if(getActionBar()!=null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         excelReader = new ExcelReader(this);
         Map<String, List<List<String>>> data = excelReader.readExcelFile("RFID_file.xlsx");
 
@@ -109,6 +114,18 @@ public class PartsFinderActivity extends Activity {
 
             parentGridLayout.addView(button);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent();
+            intent.setClassName(this, "jp.co.toshibatec.uf2200sampleapplication.MainMenuActivity");
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
