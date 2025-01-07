@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">UF-2200サンプルアプリ</string>
+    <string name="app_name">タグサーチ</string>
     <string name="action_settings">Settings</string>
 
     <!-- タイトルバー -->
@@ -135,4 +135,10 @@
     <string name="title_input">Tag inputted</string>
     <string name="title_delete">Tag input deleted</string>
 
+    <!-- Inventory App -->
+    <string name="title_inventoryapp">棚卸し</string>
+
+    <!-- Parts Finder App -->
+    <string name="title_partsfinder_parent">品名(親)</string>
+    <string name="title_partsfinder_child">品名(子)</string>
 </resources>

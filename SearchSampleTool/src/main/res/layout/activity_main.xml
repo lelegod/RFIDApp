@@ -94,7 +94,7 @@
                         android:inputType="textMultiLine"
                         android:maxLength="24"
                         android:padding="5dp"
-                        android:text="A001000101"
+                        android:text=""
                         android:visibility="visible" />
                 </LinearLayout>
 

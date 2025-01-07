@@ -92,21 +92,21 @@
             android:name=".InventoryAppActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:label="@string/title_frequencyselect"
+            android:label="@string/title_inventoryapp"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".PartsFinderActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:label="@string/title_frequencyselect"
+            android:label="@string/title_partsfinder_parent"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".PartsFinderChildActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:label="@string/title_frequencyselect"
+            android:label="@string/title_partsfinder_child"
             android:screenOrientation="landscape" >
         </activity>
     </application>
