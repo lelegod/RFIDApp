@@ -13,6 +13,8 @@ import android.content.DialogInterface;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -96,6 +98,7 @@ public class PartsFinderActivity extends Activity {
             button.setText(parentProduct);
             button.setBackgroundColor(Color.parseColor("#23a9a9"));
             button.setTextColor(Color.WHITE);
+            button.setBackground(createButtonBackground());
             // Set layout parameters for 2-column layout
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
             params.width = 0; // Use weight for equal width
@@ -115,7 +118,24 @@ public class PartsFinderActivity extends Activity {
             parentGridLayout.addView(button);
         }
     }
+    private StateListDrawable createButtonBackground() {
+        // Default state (normal)
+        GradientDrawable normalDrawable = new GradientDrawable();
+        normalDrawable.setColor(Color.parseColor("#23a9a9"));
+        normalDrawable.setCornerRadius(16); // Rounded corners
 
+        // Pressed state
+        GradientDrawable pressedDrawable = new GradientDrawable();
+        pressedDrawable.setColor(Color.parseColor("#1e8888"));
+        pressedDrawable.setCornerRadius(16); // Rounded corners
+
+        // StateListDrawable to manage states
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDrawable);
+        stateListDrawable.addState(new int[]{}, normalDrawable); // Default state
+
+        return stateListDrawable;
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

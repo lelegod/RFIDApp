@@ -329,26 +329,22 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
-                                                    showDialog(getString(R.string.title_input), getString(R.string.message_tagexist_success), getString(R.string.btn_txt_ok), null);
-//                                                    Toast.makeText(getApplicationContext(), "Tag added successfully", Toast.LENGTH_LONG).show();
+                                                    showDialog(getString(R.string.title_input), getString(R.string.message_taginput_success), getString(R.string.btn_txt_ok), null);
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     showDialog(getString(R.string.title_error), getString(R.string.message_input_error), getString(R.string.btn_txt_ok), null);
-//                                                    Toast.makeText(getApplicationContext(), "Error adding tag", Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                 } else {
                                     // If a tag with the same EPC code already exists, notify the user
-                                    showDialog(getString(R.string.title_error), getString(R.string.message_tagexist_error), getString(R.string.btn_txt_ok), null);
-//                                    Toast.makeText(getApplicationContext(), "Tag with the same EPC code already exists", Toast.LENGTH_LONG).show();
+                                    showDialog(getString(R.string.title_error), getString(R.string.message_taginput_error), getString(R.string.btn_txt_ok), null);
                                 }
                             } else {
                                 // Handle failure of the query
-                                showDialog(getString(R.string.title_error), getString(R.string.message_check_error), getString(R.string.btn_txt_ok), null);
-//                                Toast.makeText(getApplicationContext(), "Error checking tag", Toast.LENGTH_LONG).show();
+                                showDialog(getString(R.string.title_error), getString(R.string.firebase_error), getString(R.string.btn_txt_ok), null);
                             }
                         }
                     });
@@ -401,7 +397,8 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 if (task.getResult().isEmpty()) {
-                                    Toast.makeText(getApplicationContext(), "Tag with the same EPC code do not exists", Toast.LENGTH_LONG).show();
+                                    showDialog(getString(R.string.title_error), getString(R.string.message_tagdelete_error), getString(R.string.btn_txt_ok), null);
+//                                    Toast.makeText(getApplicationContext(), "Tag with the same EPC code do not exists", Toast.LENGTH_LONG).show();
                                 } else {
                                     for (DocumentSnapshot document : task.getResult()) {
                                     firestore.collection("tag_list")
@@ -410,20 +407,22 @@ public class TagDatabaseActivity extends Activity implements View.OnClickListene
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    Toast.makeText(getApplicationContext(), "Tag deleted successfully", Toast.LENGTH_LONG).show();
+                                                    showDialog(getString(R.string.title_delete), getString(R.string.message_tagdelete_success), getString(R.string.btn_txt_ok), null);
+//                                                    Toast.makeText(getApplicationContext(), "Tag deleted successfully", Toast.LENGTH_LONG).show();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(getApplicationContext(), "Error deleting tag", Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(getApplicationContext(), "Error deleting tag", Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                 }
                             }
                             } else {
                                 // Handle failure of the query
-                                Toast.makeText(getApplicationContext(), "Error checking tag", Toast.LENGTH_LONG).show();
+                                showDialog(getString(R.string.title_error), getString(R.string.firebase_error), getString(R.string.btn_txt_ok), null);
+//                                Toast.makeText(getApplicationContext(), "Error checking tag", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
