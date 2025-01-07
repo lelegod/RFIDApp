@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 押された場合 -->
-    <item android:drawable="@drawable/and_btn_menu_device_connection_d_e" android:state_pressed="true"/>
+    <item android:drawable="@drawable/and_btn_menu_partsfinder_d_e" android:state_pressed="true"/>
     <!-- 通常状態 -->
-    <item android:drawable="@drawable/and_btn_menu_device_connection_u_e" android:state_enabled="false"/>
+    <item android:drawable="@drawable/and_btn_menu_partsfinder_u_e" android:state_enabled="false"/>
 
 </selector>

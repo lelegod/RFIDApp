@@ -447,7 +447,6 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             mPartsFinderBtn = new ImageView(MainMenuActivity.this);
         }
         mDeviceConnectionBtn.setOnClickListener(this);
-        mTagDatabaseBtn.setOnClickListener(this);
         mSearchAppBtn.setOnClickListener(this);
         mInventoryAppBtn.setOnClickListener(this);
         mPartsFinderBtn.setOnClickListener(this);
@@ -908,6 +907,7 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             mReadBtn.setBackgroundResource(R.drawable.shape_btn_menu_read);
             mSettingBtn.setOnClickListener(this);
             mReadBtn.setOnClickListener(this);
+            mTagDatabaseBtn.setOnClickListener(this);
             if(getSDKLibrary().getIsAvailableScanner()==TecRfidSuite.ScannerDecision.AVAILABLE_SCANNER.getInt()) {
                 mBarcodeBtn.setBackgroundResource(R.drawable.shape_btn_menu_barcode);
                 mBarcodeBtn.setOnClickListener(this);
@@ -922,6 +922,7 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             mReadBtn.setOnClickListener(null);
             mBarcodeBtn.setBackgroundResource(R.drawable.and_btn_menu_barcode_g);
             mBarcodeBtn.setOnClickListener(null);
+            mTagDatabaseBtn.setBackgroundResource(R.drawable.and_btn_menu_tagdatabse_g);
         }
     }
 
