@@ -447,9 +447,10 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             mPartsFinderBtn = new ImageView(MainMenuActivity.this);
         }
         mDeviceConnectionBtn.setOnClickListener(this);
-        mSearchAppBtn.setOnClickListener(this);
-        mInventoryAppBtn.setOnClickListener(this);
-        mPartsFinderBtn.setOnClickListener(this);
+//        mTagDatabaseBtn.setOnClickListener(this);
+//        mSearchAppBtn.setOnClickListener(this);
+//        mInventoryAppBtn.setOnClickListener(this);
+//        mPartsFinderBtn.setOnClickListener(this);
 
         String connectedAddress = readConnectedAddressFile();
         // 前回接続済み端末があれば
@@ -905,9 +906,16 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
         if (!TextUtils.isEmpty(mConnectedString)) {
             mSettingBtn.setBackgroundResource(R.drawable.shape_btn_menu_setting);
             mReadBtn.setBackgroundResource(R.drawable.shape_btn_menu_read);
+            mTagDatabaseBtn.setBackgroundResource(R.drawable.shape_btn_menu_tagdatabase);
+            mSearchAppBtn.setBackgroundResource(R.drawable.shape_btn_menu_searchapp);
+            mInventoryAppBtn.setBackgroundResource(R.drawable.shape_btn_menu_inventoryapp);
+            mPartsFinderBtn.setBackgroundResource(R.drawable.shape_btn_menu_partsfinder);
             mSettingBtn.setOnClickListener(this);
             mReadBtn.setOnClickListener(this);
             mTagDatabaseBtn.setOnClickListener(this);
+            mSearchAppBtn.setOnClickListener(this);
+            mInventoryAppBtn.setOnClickListener(this);
+            mPartsFinderBtn.setOnClickListener(this);
             if(getSDKLibrary().getIsAvailableScanner()==TecRfidSuite.ScannerDecision.AVAILABLE_SCANNER.getInt()) {
                 mBarcodeBtn.setBackgroundResource(R.drawable.shape_btn_menu_barcode);
                 mBarcodeBtn.setOnClickListener(this);
@@ -922,7 +930,14 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
             mReadBtn.setOnClickListener(null);
             mBarcodeBtn.setBackgroundResource(R.drawable.and_btn_menu_barcode_g);
             mBarcodeBtn.setOnClickListener(null);
-            mTagDatabaseBtn.setBackgroundResource(R.drawable.and_btn_menu_tagdatabse_g);
+            mTagDatabaseBtn.setBackgroundResource(R.drawable.and_btn_menu_tagdatabase_g);
+            mTagDatabaseBtn.setOnClickListener(null);
+            mSearchAppBtn.setBackgroundResource(R.drawable.and_btn_menu_searchapp_g);
+            mSearchAppBtn.setOnClickListener(null);
+            mInventoryAppBtn.setBackgroundResource(R.drawable.and_btn_menu_inventoryapp_g);
+            mInventoryAppBtn.setOnClickListener(null);
+            mPartsFinderBtn.setBackgroundResource(R.drawable.and_btn_menu_partsfinder_g);
+            mPartsFinderBtn.setOnClickListener(null);
         }
     }
 
