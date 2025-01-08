@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
@@ -92,6 +93,8 @@ public class PartsFinderActivity extends Activity {
         Log.d("parentChildrenMap", parentChildrenMap.toString());
 
         mPartsFinderActivity = this;
+        EditText searchBar = findViewById(R.id.searchBar);
+        List<Button> buttons = new ArrayList<>();
         GridLayout parentGridLayout = findViewById(R.id.parentGrid);
         for (String parentProduct : parentChildrenMap.keySet()) {
             Button button = new Button(this);
@@ -116,7 +119,33 @@ public class PartsFinderActivity extends Activity {
             });
 
             parentGridLayout.addView(button);
+            buttons.add(button);
         }
+
+        searchBar.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String query = charSequence.toString().toLowerCase();
+                parentGridLayout.removeAllViews();
+
+                for (Button button : buttons) {
+                    String parentProduct = button.getText().toString().toLowerCase();
+                    if (parentProduct.contains(query)) {
+                        parentGridLayout.addView(button);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable editable) {
+
+            }
+        });
     }
     private StateListDrawable createButtonBackground() {
         // Default state (normal)
